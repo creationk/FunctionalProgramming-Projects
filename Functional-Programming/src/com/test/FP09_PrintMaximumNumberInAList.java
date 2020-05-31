@@ -20,6 +20,7 @@ public class FP09_PrintMaximumNumberInAList {
 
 	@Test
 	public void test() {
+		System.out.println(":::::::::: test :::::::::");		
 		Integer max = Integer.MIN_VALUE;
 		for (int i = 0; i < numberList.size(); i++) {
 			max = max > numberList.get(i) ? max : numberList.get(i);
@@ -29,6 +30,7 @@ public class FP09_PrintMaximumNumberInAList {
 
 	@Test
 	public void testFunctional() {
+		System.out.println(":::::::::: test functional :::::::::");				
 		// System.out.println(numberList.stream().reduce((x, y) -> x > y ? x :
 		// y).get());
 		System.out.println(numberList.stream().reduce(Integer.MIN_VALUE, Math::max));

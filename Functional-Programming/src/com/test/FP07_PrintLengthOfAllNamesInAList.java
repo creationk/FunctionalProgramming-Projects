@@ -10,6 +10,7 @@ public class FP07_PrintLengthOfAllNamesInAList {
 
 	@Test
 	public void test() {
+		System.out.println(":::::::::: test :::::::::");						
 		for (String a : namesList) {
 			System.out.println(a + "," + a.length());
 		}
@@ -17,6 +18,7 @@ public class FP07_PrintLengthOfAllNamesInAList {
 
 	@Test
 	public void testFunctional() {
+		System.out.println(":::::::::: test functional :::::::::");						
 		namesList.stream().forEach(a -> System.out.println(a + "," + a.length()));
 	}
 }

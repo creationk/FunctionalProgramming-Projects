@@ -10,7 +10,7 @@ public class FP05_PrintFourLetterNamesInAList {
 
 	@Test
 	public void test() {
-
+		System.out.println(":::::::::: test :::::::::");		
 		for (String name : namesList) {
 			if (name.length() == 4) {
 				System.out.println(name);
@@ -20,6 +20,7 @@ public class FP05_PrintFourLetterNamesInAList {
 
 	@Test
 	public void testFunctional() {
+		System.out.println(":::::::::: test functional :::::::::");						
 		namesList.stream().filter(a -> a.length() == 4).forEach(System.out::println);
 	}
 }

@@ -10,6 +10,7 @@ public class FP04_PrintAllNamesInAList {
 
 	@Test
 	public void test() {
+		System.out.println(":::::::::: test :::::::::");				
 		for (String a : namesList) {
 			System.out.println(a);
 		}
@@ -17,6 +18,7 @@ public class FP04_PrintAllNamesInAList {
 
 	@Test
 	public void testFunctional() {
+		System.out.println(":::::::::: test functional :::::::::");				
 		namesList.stream().forEach(System.out::println);
 	}
 }
