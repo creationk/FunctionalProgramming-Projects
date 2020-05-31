@@ -13,9 +13,11 @@ public class FP10_PrintSquaresOfEvenNumbersAndAddThem {
 		List<Integer> tempList = new ArrayList<>();
 		Random r = new Random();
 		for (int i = 0; i < 5; i++) {
-			tempList.add(r.nextInt(5));
+			tempList.add(r.nextInt(6));
 		}
 		numberList = tempList;
+		System.out.println("::::::::::: Initial list :::::::::::");
+		System.out.println(numberList);
 	}
 
 	@Test
