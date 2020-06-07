@@ -16,6 +16,8 @@ public class FP01_PrintAllNumbersInAList {
 			tempList.add(r.nextInt(50));
 		}
 		numberList = tempList;
+		System.out.println("::::::::::: Initial list :::::::::::");
+		System.out.println(numberList);
 	}
 
 	@Test
@@ -30,7 +32,7 @@ public class FP01_PrintAllNumbersInAList {
 	public void testFunctional() {
 		System.out.println(":::::::::: test functional :::::::::");
 		numberList.stream()
-			.forEach(System.out::println);
+			.forEach(Functions.print);
 	}
 
 }

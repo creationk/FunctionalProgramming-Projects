@@ -21,6 +21,6 @@ public class FP05_PrintFourLetterNamesInAList {
 	@Test
 	public void testFunctional() {
 		System.out.println(":::::::::: test functional :::::::::");						
-		namesList.stream().filter(a -> a.length() == 4).forEach(System.out::println);
+		namesList.stream().filter(a -> a.length() == 4).forEach(Functions.print);
 	}
 }

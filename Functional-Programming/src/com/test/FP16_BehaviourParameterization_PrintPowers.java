@@ -3,10 +3,11 @@ package com.test;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.function.Predicate;
 
 import org.junit.Test;
 
-public class FP03_PrintAllOddNumbersInAList {
+public class FP16_BehaviourParameterization_PrintPowers {
 	private static final List<Integer> numberList;
 
 	static {
@@ -16,24 +17,22 @@ public class FP03_PrintAllOddNumbersInAList {
 			tempList.add(r.nextInt(99999));
 		}
 		numberList = tempList;
-		System.out.println("::::::::::: Initial list :::::::::::");
-		System.out.println(numberList);
 	}
 
-	@Test
-	public void test() {
-		System.out.println(":::::::::: test :::::::::");		
-		for (Integer a : numberList) {
-			if (a % 2 != 0)
-				System.out.println(a);
-		}
-	}
 
 	@Test
 	public void testFunctional() {
-		System.out.println(":::::::::: test functional :::::::::");				
+		System.out.println(":::::::::: test functional :::::::::");	
+		
+		filterAndPrint(Functions.filterEven);
+		System.out.println("-----");
+		filterAndPrint(Functions.filterOdd);
+	}
+
+
+	private void filterAndPrint(Predicate <Integer> filterCondition) {
 		numberList.stream()
-			.filter(Functions.filterOdd)
+			.filter(filterCondition)
 				.forEach(Functions.print);
 	}
 }

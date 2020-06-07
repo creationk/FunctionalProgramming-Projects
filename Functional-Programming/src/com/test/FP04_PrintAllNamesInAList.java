@@ -14,11 +14,13 @@ public class FP04_PrintAllNamesInAList {
 		for (String a : namesList) {
 			System.out.println(a);
 		}
+		System.out.println("::::::::::: Initial list :::::::::::");
+		System.out.println(namesList);
 	}
 
 	@Test
 	public void testFunctional() {
 		System.out.println(":::::::::: test functional :::::::::");				
-		namesList.stream().forEach(System.out::println);
+		namesList.stream().forEach(Functions.print);
 	}
 }

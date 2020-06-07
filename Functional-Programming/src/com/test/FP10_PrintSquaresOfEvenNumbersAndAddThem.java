@@ -3,6 +3,8 @@ package com.test;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.function.Function;
+import java.util.function.Predicate;
 
 import org.junit.Test;
 
@@ -31,12 +33,15 @@ public class FP10_PrintSquaresOfEvenNumbersAndAddThem {
 		System.out.println(sum);
 	}
 
+	
 	@Test
 	public void testFunctional() {
 		System.out.println(":::::::::: test functional :::::::::");
-		System.out.println(numberList.stream()
-				.filter(num -> num % 2 == 0)
-					.map(num -> num * num)
-						.reduce(0,Integer::sum));
+		Predicate<Integer> predicate = num -> num % 2 == 0;
+		Function<Integer, Integer> mapperFunction = num -> num * num;
+		Integer i = numberList.stream()
+				.filter(predicate)
+					.map(mapperFunction)
+						.reduce(0,Integer::sum);
 	}
 }

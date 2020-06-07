@@ -16,6 +16,8 @@ public class FP02_PrintAllEvenNumbersInAList {
 			tempList.add(r.nextInt(99999));
 		}
 		numberList = tempList;
+		System.out.println("::::::::::: Initial list :::::::::::");
+		System.out.println(numberList);
 	}
 	@Test
 	public void test() {
@@ -30,7 +32,7 @@ public class FP02_PrintAllEvenNumbersInAList {
 	public void testFunctional() {
 		System.out.println(":::::::::: test functional :::::::::");		
 		numberList.stream()
-			.filter(num -> num % 2 == 0)
-				.forEach(System.out::println);
+			.filter(Functions.filterEven)
+				.forEach(Functions.print);
 	}
 }
