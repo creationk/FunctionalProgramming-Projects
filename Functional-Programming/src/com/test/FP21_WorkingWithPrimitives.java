@@ -1,8 +1,8 @@
 package com.test;
 
 import java.util.Arrays;
+import java.util.function.Supplier;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 import org.junit.Test;
 
@@ -23,6 +23,17 @@ public class FP21_WorkingWithPrimitives {
 		System.out.println(":::::::::::::: Sum, Aveage & Count ::::::::::::::");
 		System.out.println(Arrays.stream(intArray).sum() + "," + Arrays.stream(intArray).average().getAsDouble() + ","
 				+ Arrays.stream(intArray).count());
+
+		System.out.println(":::::::: Working with a range of numbers ::::::::");
+		Supplier<IntStream> intStreamSupplier = () -> IntStream.range(1, 7);
+
+		System.out.println(intStreamSupplier.get().sum() + "," + intStreamSupplier.get().average().getAsDouble() + ","
+				+ intStreamSupplier.get().count());
+
+		System.out.println(":::::::: Stream iteration ::::::::");
+		Supplier<IntStream> iteratingSupplier = () -> IntStream.iterate(1, i -> i + 3).limit(5);
+		System.out.println(iteratingSupplier.get().sum() + "," + iteratingSupplier.get().average().getAsDouble() + ","
+				+ iteratingSupplier.get().count());
 
 	}
 }

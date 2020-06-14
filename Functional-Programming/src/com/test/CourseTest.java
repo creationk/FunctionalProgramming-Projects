@@ -1,8 +1,8 @@
 package com.test;
 
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 import java.util.function.BiPredicate;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -29,14 +29,14 @@ public class CourseTest {
 		courses.stream().forEach(System.out::println);
 	}
 
-	@Test
+	// @Test
 	public void testPrintAllReviewScoreGreaterThanX() {
 		System.out.println("\n:::::::::::::: testPrintAllReviewScoreGreaterThanX ::::::::::::::");
 		courses.stream().filter(x -> scoreFilter.test(x.getReviewScore(), 95)).forEach(System.out::println);
 //		System.out.println(courses.stream().allMatch(course->scoreFilter.test(course.getReviewScore(),95)));
 	}
 
-	@Test
+	// @Test
 	public void testPrintAnyReviewScoreGreaterThanX() {
 		System.out.println("\n:::::::::::::: testPrintAnyReviewScoreGreaterThanX ::::::::::::::");
 		courses.stream().filter(course -> scoreFilter.test(course.getReviewScore(), 95)).findAny().stream()
@@ -44,59 +44,59 @@ public class CourseTest {
 
 	}
 
-	@Test
+	// @Test
 	public void sortCoursesBasedOnNumberOfStudentdDescending() {
 		System.out.println("\n:::::::::::::: sortCoursesBasedOnNumberOfStudentdDescending ::::::::::::::");
 		courses.stream().sorted(Comparator.comparing(sortStudentNumberDesc).reversed()).forEach(System.out::println);
 	}
 
-	@Test
+	// @Test
 	public void showTop3CoursesOrderedByReview() {
 		System.out.println("\n:::::::::::::: showTop3CoursesOrderedByReview ::::::::::::::");
 		Comparator<Course> byReviewScore = Comparator.comparing(Course::getReviewScore).reversed();
 		System.out.println(courses.stream().sorted(byReviewScore).limit(3).collect(Collectors.toList()));
 	}
 
-	@Test
+	// @Test
 	public void showTop3CoursesOrderedByReviewSkip2() {
 		System.out.println("\n:::::::::::::: showTop3CoursesOrderedByReviewSkip2 ::::::::::::::");
 		Comparator<Course> byReviewScore = Comparator.comparing(Course::getReviewScore).reversed();
 		System.out.println(courses.stream().sorted(byReviewScore).limit(3).skip(2).collect(Collectors.toList()));
 	}
 
-	@Test
+	// @Test
 	public void takeWhileRatingis95() {
 		System.out.println("\n:::::::::::::: takeWhileRatingis97 ::::::::::::::");
 		System.out.println(courses.stream().sorted(Comparator.comparing(Course::getReviewScore).reversed())
 				.takeWhile(course -> course.getReviewScore() >= 97).collect(Collectors.toList()));
 	}
 
-	@Test
+	// @Test
 	public void skipWhileRatingis95() {
 		System.out.println("\n:::::::::::::: skipWhileRatingis95 ::::::::::::::");
 		System.out.println(courses.stream().sorted(Comparator.comparing(Course::getReviewScore).reversed())
 				.dropWhile(course -> course.getReviewScore() >= 95).collect(Collectors.toList()));
 	}
 
-	@Test
+	// @Test
 	public void findCourseWithMaximumNumberOfStudents() {
 		System.out.println("\n:::::::::::::: findCourseWithMaximumNumberOfStudents ::::::::::::::");
 		System.out.println(courses.stream().max(Comparator.comparing(x -> x.getNoOfStudents())).get());
 	}
 
-	@Test
+	// @Test
 	public void findCourseWithMinimumNumberOfStudents() {
 		System.out.println("\n:::::::::::::: findCourseWithMinimumNumberOfStudents ::::::::::::::");
 		System.out.println(courses.stream().min(Comparator.comparing(x -> x.getNoOfStudents())).get());
 	}
 
-	@Test
+	// @Test
 	public void getCountOfCoursesWithAtleast95Rating() {
 		System.out.println("\n:::::::::::::: getCountOfCoursesWithAtleast95Rating ::::::::::::::");
 		System.out.println(courses.stream().filter(c -> c.getReviewScore() >= 95).count());
 	}
 
-	@Test
+	// @Test
 	public void getTotalNumberOfStudentsEnrolledInACourseWithAtleast95Rating() {
 		System.out.println(
 				"\n:::::::::::::: getTotalNumberOfStudentsEnrolledInACourseWithAtleast95Rating ::::::::::::::");
@@ -104,7 +104,7 @@ public class CourseTest {
 				courses.stream().filter(c -> c.getReviewScore() >= 95).mapToInt(Course::getNoOfStudents).sum());
 	}
 
-	@Test
+	// @Test
 	public void getAverageNumberOfStudentsEnrolledInACourseWithAtleast95Rating() {
 		System.out.println(
 				"\n:::::::::::::: getAverageNumberOfStudentsEnrolledInACourseWithAtleast95Rating ::::::::::::::");
@@ -112,7 +112,7 @@ public class CourseTest {
 				.average().getAsDouble());
 	}
 
-	@Test
+	// @Test
 	public void groupCoursesByCategory() {
 		System.out.println("\n:::::::::::::: groupCoursesByCategory ::::::::::::::");
 		System.out.println(courses.stream().collect(Collectors.groupingBy(Course::getCategory)));
@@ -120,6 +120,21 @@ public class CourseTest {
 		System.out.println(courses.stream().collect(Collectors.groupingBy(Course::getCategory,
 				Collectors.maxBy(Comparator.comparing(Course::getNoOfStudents)))));
 	}
+
+	// @Test
+	public void extractListOfCourses() {
+		System.out.println("::::::::::: extractListOfCourses ::::::::::::");
+		System.out.println(courses.stream().map(Course::getName).collect(Collectors.joining(",")));
+	}
+
+	@Test
+	public void listAllIndividualCharactersInCourses() {
+		System.out.println(":::::::::::::: listAllIndividualCharactersInCourses :::::::::::::");
+		System.out.println(courses.stream().map(c -> c.getName().split("")).flatMap(Arrays::stream).distinct()
+				.collect(Collectors.toList()));
+	}
+	
+	
 
 }
 
