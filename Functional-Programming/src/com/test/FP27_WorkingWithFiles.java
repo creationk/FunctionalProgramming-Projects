@@ -12,16 +12,14 @@ import java.util.stream.Stream;
 import org.junit.Test;
 
 public class FP27_WorkingWithFiles {
+	List<String> stringStoreList;
+	File fileOne = new File("tempFile.txt");
+	File fileTwo = new File("tempFile2.txt");
 
 	@Test
-	public void test() {
-		File file = new File("tempFile.txt");
-
+	public void testWriteAndReadAFile() {
 		try {
-			file.createNewFile();
-			System.out.println("Path = " + file.getAbsolutePath());
-
-			FileWriter writer = new FileWriter(file);
+			FileWriter writer = new FileWriter(fileOne);
 			Supplier<Stream<String>> stringSupplier = () -> Stream.of("Hi", "This is Someone else");
 			stringSupplier.get().forEach(x -> {
 				try {
@@ -32,12 +30,11 @@ public class FP27_WorkingWithFiles {
 			});
 			writer.close();
 
-			List<String> stringList = Files.readAllLines(Paths.get(file.getPath()));
-			System.out.println(stringList);
+			stringStoreList = Files.readAllLines(Paths.get(fileOne.getPath()));
+			System.out.println(stringStoreList);
 
-			file = new File("tempFile2.txt");
-			FileWriter writer2 = new FileWriter(file);
-			stringList.stream().forEach(str -> {
+			FileWriter writer2 = new FileWriter(fileTwo);
+			stringStoreList.stream().forEach(str -> {
 				try {
 					writer2.write(str + "\n");
 				} catch (IOException e) {
@@ -52,5 +49,4 @@ public class FP27_WorkingWithFiles {
 			e.printStackTrace();
 		}
 	}
-
 }
